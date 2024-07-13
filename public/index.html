@@ -17,7 +17,7 @@
             e.preventDefault();
             let url = document.getElementById('url').value;
             url = url.replace(/^https?:\/\//, ''); // 移除 http:// 或 https:// 前缀
-            const proxyUrl = `/p/${url}`;
+            const proxyUrl = `/warp/${url}`;
             window.location.href = proxyUrl;
         });
     </script>
