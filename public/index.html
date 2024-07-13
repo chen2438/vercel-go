@@ -12,20 +12,13 @@
         <input type="text" id="url" name="url" required>
         <button type="submit">Proxy</button>
     </form>
-    <div id="result"></div>
     <script>
-        document.getElementById('proxy-form').addEventListener('submit', async (e) => {
+        document.getElementById('proxy-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const url = document.getElementById('url').value;
-            const response = await fetch('/proxy', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ url })
-            });
-            const data = await response.text();
-            document.getElementById('result').innerHTML = `<pre>${data}</pre>`;
+            let url = document.getElementById('url').value;
+            url = url.replace(/^https?:\/\//, ''); // 移除 http:// 或 https:// 前缀
+            const proxyUrl = `/p/${url}`;
+            window.location.href = proxyUrl;
         });
     </script>
 </body>
